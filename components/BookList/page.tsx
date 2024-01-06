@@ -8,7 +8,7 @@ interface Book {
 
 const fetchFromNotion = async () => {
     try {
-        const res = await fetch("http://localhost:3000/api/notion/get-data");
+        const res = await fetch("https://bookish-omega.vercel.app/api/notion/get-data");
         if (!res.ok) {
             throw new Error("Failed to fetch data from Notion API");
         }
