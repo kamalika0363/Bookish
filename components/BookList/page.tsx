@@ -1,6 +1,9 @@
-// pages/book-list.tsx
-"use client";
 import React, { useEffect, useState } from "react";
+
+interface Book {
+    author: string;
+    summary: string;
+}
 
 const fetchFromNotion = async () => {
     try {
@@ -9,7 +12,7 @@ const fetchFromNotion = async () => {
             throw new Error("Failed to fetch data from Notion API");
         }
         const data = await res.json();
-        return data;
+        return data as Book[]; // Assuming the shape of data is an array of Book objects
     } catch (error) {
         console.error("Error fetching data:", error);
         return [];
@@ -17,7 +20,7 @@ const fetchFromNotion = async () => {
 };
 
 const BookList: React.FC = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<Book[]>([]); // Specify the type for data state
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,8 +28,12 @@ const BookList: React.FC = () => {
             setData(result);
         };
 
-        fetchData();
+        fetchData().then(r => console.log("Data fetched from Notion API"));
     }, []);
+
+    const handleButtonClick = (author: string) => {
+        alert(`Button clicked for author: ${author}`);
+    };
 
     return (
         <div className="flex flex-col mt-3 border border-[#762837] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1 my-2">
@@ -37,7 +44,10 @@ const BookList: React.FC = () => {
                 <ul>
                     {data && data.length > 0 ? (
                         data.map((book, index) => (
-                            <li className="border border-[#762837] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1 my-3" key={index}>
+                            <li
+                                className="border border-[#762837] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1 my-3"
+                                key={index}
+                            >
                                 <div className="font-semibold">{book.author}</div>
                                 <div className="text-sm font-light">{book.summary}</div>
                                 <button
