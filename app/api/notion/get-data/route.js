@@ -11,7 +11,7 @@ const notion = new Client({
 
 export const GET = async(request) => {
     const data = await notion.databases.query({
-        database_id: process.env.NOTION_DB,
+        database_id: "41b9c4334091442c86f60e4d8e25608f"
     })
 
 
