@@ -2,18 +2,20 @@
 import React, { useEffect, useState } from "react";
 
 interface Book {
+    name: string;
     author: string;
     summary: string;
+    image: string;
 }
 
 const fetchFromNotion = async () => {
     try {
-        const res = await fetch("https://bookish-omega.vercel.app/api/notion/get-data");
+        const res = await fetch("/api/notion/get-data");
         if (!res.ok) {
             throw new Error("Failed to fetch data from Notion API");
         }
         const data = await res.json();
-        return data as Book[]; // Assuming the shape of data is an array of Book objects
+        return data as Book[];
     } catch (error) {
         console.error("Error fetching data:", error);
         return [];
@@ -21,7 +23,7 @@ const fetchFromNotion = async () => {
 };
 
 const BookList: React.FC = () => {
-    const [data, setData] = useState<Book[]>([]); // Specify the type for data state
+    const [data, setData] = useState<Book[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +31,7 @@ const BookList: React.FC = () => {
             setData(result);
         };
 
-        fetchData().then(r => console.log("Data fetched from Notion API"));
+        fetchData().then(() => console.log("Data fetched from Notion API"));
     }, []);
 
     const handleButtonClick = (author: string) => {
@@ -49,8 +51,16 @@ const BookList: React.FC = () => {
                                 className="border border-[#762837] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1 my-3"
                                 key={index}
                             >
-                                <div className="font-semibold">{book.author}</div>
-                                <div className="text-sm font-light">{book.summary}</div>
+                                <div className="font-bold text-sm">{book.name}</div>
+                                <div className="font-normal text-xs">{book.author}</div>
+                                <div className="text-xs font-light">{book.summary}</div>
+                                {book.image && (
+                                    <img
+                                        src={book.image}
+                                        alt={`Cover of ${book.name}`}
+                                        className="my-2 max-w-full"
+                                    />
+                                )}
                                 <button
                                     className="border border-[#762837] px-2 rounded-r-md rounded-tl-md font-medium mt-2 text-xs"
                                     onClick={() => handleButtonClick(book.author)}

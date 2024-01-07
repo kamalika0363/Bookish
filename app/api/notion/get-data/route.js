@@ -1,28 +1,35 @@
-import {NextResponse} from "next/server";
-
-const { Client } = require("@notionhq/client")
-
-import {NextApiResponse, NextApiRequest} from "next";
-
+// api/notion/get-data.js
+import { NextResponse } from "next/server";
+import { Client } from "@notionhq/client";
+import { NextApiResponse, NextApiRequest } from "next";
 
 const notion = new Client({
-    auth: process.env.NOTION_API
-})
+    auth: process.env.NOTION_API,
+});
 
-export const GET = async(request) => {
-    const data = await notion.databases.query({
-        database_id: "41b9c4334091442c86f60e4d8e25608f"
-    })
+export const GET = async (request) => {
+    try {
+        const data = await notion.databases.query({
+            database_id: "41b9c4334091442c86f60e4d8e25608f",
+        });
 
+        const extract_data = data.results
+            .filter(
+                (c) =>
+                    c.properties.status &&
+                    c.properties.status.select &&
+                    c.properties.status.select.name === "Completed"
+            )
+            .map((c) => ({
+                author: c.properties.author.rich_text[0]?.text.content || '',
+                summary: c.properties.summary.rich_text[0]?.text.content || '',
+                name: c.properties.name.title[0]?.text.content || '',
+                image: c.properties.image?.files[0]?.external.url || '', // Assuming 'image' is the property name
+            }));
 
-    const all_data = data.results.map((c) => c.properties)
-
-    const extract_data = all_data
-        .filter((c) => c.status && c.status.select && c.status.select.name === "Completed")
-        .map((c) => ({
-        author: c.author.rich_text[0].text.content,
-        summary: c.summary.rich_text[0].text.content,
-
-    }))
-    return NextResponse.json(extract_data)
-}
+        return NextResponse.json(extract_data);
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return NextResponse.error(error.message, 500);
+    }
+};
