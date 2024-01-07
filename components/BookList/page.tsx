@@ -58,7 +58,7 @@ const BookList: React.FC = () => {
                                     <img
                                         src={book.image}
                                         alt={`Cover of ${book.name}`}
-                                        className="my-2 max-w-full"
+                                        className="my-2 max-w-full rounded-md"
                                     />
                                 )}
                                 <button
