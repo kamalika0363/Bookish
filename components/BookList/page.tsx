@@ -54,19 +54,15 @@ const BookList: React.FC = () => {
                                 <div className="font-bold text-sm">{book.name}</div>
                                 <div className="font-normal text-xs">{book.author}</div>
                                 <div className="text-xs font-light">{book.summary}</div>
-                                {book.image && (
-                                    <img
-                                        src={book.image}
-                                        alt={`Cover of ${book.name}`}
-                                        className="my-2 max-w-full rounded-md"
-                                    />
-                                )}
-                                <button
-                                    className="border border-[#762837] px-2 rounded-r-md rounded-tl-md font-medium mt-2 text-xs"
-                                    onClick={() => handleButtonClick(book.author)}
-                                >
-                                    Get Book
-                                </button>
+                                <div className="flex sm:justify-start justify-center items-center">
+                                    {book.image && (
+                                        <img
+                                            src={book.image}
+                                            alt={`Cover of ${book.name}`}
+                                            className="my-3 max-w-full rounded-md sm:w-36 sm:h-60"
+                                        />
+                                    )}
+                                </div>
                             </li>
                         ))
                     ) : (
