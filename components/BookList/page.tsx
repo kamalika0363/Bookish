@@ -51,9 +51,9 @@ const BookList: React.FC = () => {
                                 className="border border-[#762837] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1 my-3"
                                 key={index}
                             >
-                                <div className="font-bold text-sm">{book.name}</div>
-                                <div className="font-normal text-xs">{book.author}</div>
-                                <div className="text-xs font-light">{book.summary}</div>
+                                <div className="font-bold text-md">{book.name}</div>
+                                <div className="font-normal text-sm">{book.author}</div>
+                                <div className="text-sm font-light">{book.summary}</div>
                                 <div className="flex sm:justify-start justify-center items-center">
                                     {book.image && (
                                         <img
