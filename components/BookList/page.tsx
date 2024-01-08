@@ -39,37 +39,30 @@ const BookList: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col mt-3 border border-[#762837] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1 my-2">
-            <div className="my-2 font-semibold border border-[#762837] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1">
-                Book List
-            </div>
-            <div>
-                <ul>
-                    {data && data.length > 0 ? (
-                        data.map((book, index) => (
-                            <li
-                                className="border border-[#762837] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1 my-3"
-                                key={index}
-                            >
-                                <div className="font-bold text-md">{book.name}</div>
-                                <div className="font-normal text-sm">{book.author}</div>
-                                <div className="text-sm font-light">{book.summary}</div>
-                                <div className="flex sm:justify-start justify-center items-center">
-                                    {book.image && (
-                                        <img
-                                            src={book.image}
-                                            alt={`Cover of ${book.name}`}
-                                            className="my-3 max-w-full rounded-md sm:w-36 sm:h-60"
-                                        />
-                                    )}
-                                </div>
-                            </li>
-                        ))
-                    ) : (
-                        <li className="font-bold">Loading...</li>
-                    )}
-                </ul>
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+            {data && data.length > 0 ? (
+                data.map((book, index) => (
+                    <div
+                        className="border border-[#762837] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1 my-3"
+                        key={index}
+                    >
+                        <div className="font-bold text-md">{book.name}</div>
+                        <div className="font-normal text-sm">{book.author}</div>
+                        <div className="text-sm font-light">{book.summary}</div>
+                        <div className="flex sm:justify-start justify-center items-center">
+                            {book.image && (
+                                <img
+                                    src={book.image}
+                                    alt={`Cover of ${book.name}`}
+                                    className="my-3 max-w-full rounded-md sm:w-36 sm:h-60"
+                                />
+                            )}
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <div className="font-bold">Loading...</div>
+            )}
         </div>
     );
 };
