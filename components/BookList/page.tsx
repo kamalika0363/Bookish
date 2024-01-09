@@ -43,7 +43,7 @@ const BookList: React.FC = () => {
             {data && data.length > 0 ? (
                 data.map((book, index) => (
                     <div
-                        className="border border-[#762837] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1 my-3"
+                        className="text-[#762837] dark:text-[#faefd6] border border-[#762837] dark:border-[#faefd6] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1 my-3"
                         key={index}
                     >
                         <div className="font-bold text-md">{book.name}</div>
@@ -54,7 +54,7 @@ const BookList: React.FC = () => {
                                 <img
                                     src={book.image}
                                     alt={`Cover of ${book.name}`}
-                                    className="my-3 max-w-full rounded-md sm:w-36 sm:h-60"
+                                    className="my-3 max-w-full rounded-md sm:w-40 sm:h-60"
                                 />
                             )}
                         </div>
