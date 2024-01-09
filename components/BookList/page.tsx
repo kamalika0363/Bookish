@@ -61,7 +61,7 @@ const BookList: React.FC = () => {
                     </div>
                 ))
             ) : (
-                <div className="font-bold">Loading...</div>
+                <div className="font-bold text-[#762837] dark:text-[#faefd6]">Loading...</div>
             )}
         </div>
     );
