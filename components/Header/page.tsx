@@ -1,7 +1,7 @@
 export default function Header() {
     return (
         <div className="flex flex-col">
-            <div className="border border-[#762837] dark:border-[#faefd6] text-[#762837] dark:text-[#faefd6] rounded-br-lg rounded-tl-lg border-b-2 border-r-2 px-2 py-1">
+            <div className="border border-[#762837] dark:border-[#faefd6] text-[#762837] dark:text-[#faefd6] rounded-r rounded-tl border-b-2 border-r-2 px-2 py-1">
                 <div className="font-bold">ACTIVE_BOOK</div>
                 <div className="font-mono text-xs font-semibold">
                     {'<script src="transmit:profile"></script>'} <br/>
@@ -12,7 +12,7 @@ export default function Header() {
                     {['CLASSIC', 'MYSTERY', 'CRISIS'].map((genre) => (
                         <button
                             key={genre}
-                            className="border border-[#762837] dark:border-[#faefd6] px-2 rounded-r-md rounded-tl-md font-semibold"
+                            className="border border-[#762837] dark:border-[#faefd6] px-2 rounded-r rounded-tl border-b-2 border-r-2 font-semibold"
                         >
                             {genre}
                         </button>

@@ -20,7 +20,7 @@ export default function Navbar() {
     };
 
     return (
-        <div className={`flex flex-row gap-2 py-4`}>
+        <div className="flex flex-row gap-2 py-4">
             <div className="flex justify-center items-center">
                 <BookHeartIcon className="text-[#762837] dark:text-[#faefd6]" size={26} />
             </div>
