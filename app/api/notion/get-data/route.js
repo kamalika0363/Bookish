@@ -1,4 +1,3 @@
-// api/notion/get-data.js
 import { NextResponse } from "next/server";
 import { Client } from "@notionhq/client";
 import { NextApiResponse, NextApiRequest } from "next";
@@ -24,7 +23,7 @@ export const GET = async (request) => {
                 author: c.properties.author.rich_text[0]?.text.content || '',
                 summary: c.properties.summary.rich_text[0]?.text.content || '',
                 name: c.properties.name.title[0]?.text.content || '',
-                image: c.properties.image?.files[0]?.external.url || '', // Assuming 'image' is the property name
+                image: c.properties.image?.files[0]?.external.url || '',
             }));
 
         return NextResponse.json(extract_data);

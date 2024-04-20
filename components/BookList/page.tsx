@@ -39,22 +39,22 @@ const BookList: React.FC = () => {
     };
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+        <div className="grid grid-cols-1 gap-4 mt-3 sm:grid-cols-2">
             {data && data.length > 0 ? (
                 data.map((book, index) => (
                     <div
-                        className="text-[#762837] dark:text-[#faefd6] border border-[#762837] dark:border-[#faefd6] rounded-br rounded-tl rounded-tr border-b-2 border-r-2 px-2 py-1 my-3"
+                        className="text-[#762837] dark:text-neutral-200 border border-[#762837] dark:border-stone-700 border-b-2 border-r-2 px-2 py-1 my-3"
                         key={index}
                     >
                         <div className="font-bold text-md">{book.name}</div>
-                        <div className="font-normal text-sm">{book.author}</div>
+                        <div className="text-sm font-normal">{book.author}</div>
                         <div className="text-sm font-light">{book.summary}</div>
-                        <div className="flex sm:justify-start justify-center items-center">
+                        <div className="flex items-center justify-center sm:justify-start">
                             {book.image && (
                                 <img
                                     src={book.image}
                                     alt={`Cover of ${book.name}`}
-                                    className="my-3 max-w-full rounded-md sm:w-40 sm:h-60"
+                                    className="max-w-full my-3 rounded-md sm:w-40 sm:h-60"
                                 />
                             )}
                         </div>
